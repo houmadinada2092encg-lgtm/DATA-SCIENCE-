@@ -3,7 +3,7 @@
 
 # HOUMADI NADA
 
-<img src="image nada houmadi.jpg" style="height:264px;margin-right:232px"/>
+<img src="image nada houmadi.jpg" style="height:264px;margin-right:264px"/>
 
 # PARTIE 1 : FONDAMENTAUX DE LA SCIENCE DES DONNÉES
 
