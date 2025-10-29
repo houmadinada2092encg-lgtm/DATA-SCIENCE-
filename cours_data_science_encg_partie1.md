@@ -1,8 +1,8 @@
 # COURS DE SCIENCE DES DONNÉES
 ## École Nationale de Commerce et de Gestion (ENCG) - 4ème Année
 
-#HOUMADI NADA
-<img src="NADA HOUMADI.jpg" style="height:464px;margin-right:432px"/>
+##HOUMADI NADA
+<img src="image nada houmadi.jpg" style="height:464px;margin-right:432px"/>
 
 # PARTIE 1 : FONDAMENTAUX DE LA SCIENCE DES DONNÉES
 
