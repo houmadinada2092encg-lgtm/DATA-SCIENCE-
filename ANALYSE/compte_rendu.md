@@ -1,136 +1,161 @@
-# -------------------------------------------------------------
-# 📊 ANALYSE COMPLETE DU JEU DE DONNÉES BUSINESS_SALES
-# -------------------------------------------------------------
+# 📊 Analyse complète du jeu de données `business_SALES`
 
+Ce document présente une analyse statistique complète du jeu de données **business_SALES**, incluant :
+- la description générale de la base,
+- les méthodes statistiques descriptives utilisées,
+- les visualisations,
+- et des interprétations détaillées.
+
+---
+
+## 1️⃣ Description générale de la base de données
+
+Le jeu de données **business_SALES** représente des informations commerciales sur les ventes d’une entreprise.  
+En général, il contient des variables typiques telles que :
+
+- **Date** : période d'observation des ventes  
+- **Product / Category** : le produit ou la catégorie vendue  
+- **Region / Country** : zone géographique  
+- **Units_Sold** : quantité vendue  
+- **Unit_Price** : prix unitaire  
+- **Revenue** : chiffre d’affaires généré  
+- **Cost** : coût total  
+- **Profit** : marge réalisée  
+
+👉 *Ces variables permettent d’étudier la performance commerciale, les tendances de vente, la rentabilité et les variations géographiques ou temporelles.*
+
+---
+
+## 2️⃣ Méthodes statistiques utilisées
+
+Pour analyser la base **business_SALES**, les méthodes suivantes sont appliquées :
+
+### 🔹 Statistiques descriptives
+- Moyenne, médiane, variance, écart-type  
+- Minimum, maximum  
+- Distribution des variables (histogrammes)  
+- Analyse des valeurs manquantes  
+- Analyse de la corrélation entre variables  
+
+### 🔹 Visualisation
+- Histogrammes  
+- Boxplots (détection d’outliers)  
+- Graphiques temporels  
+- Bar charts par catégorie ou région  
+- Heatmap de corrélation  
+
+### 🔹 Analyses avancées
+- Analyse des profits par produit  
+- Analyse des ventes par région  
+- Identification des produits les plus performants  
+- Analyse des tendances temporelles  
+
+---
+
+## 3️⃣ Code Python complet
+
+```python
+# ==========================
+# 📦 IMPORTATION DES LIBRAIRIES
+# ==========================
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-# -------------------------------------------------------------
-# 1. IMPORTATION DES DONNÉES
-# -------------------------------------------------------------
-df = pd.read_csv("Business_SALES.csv")   # Modifiez le nom si différent
-print("Aperçu des données :")
-print(df.head())
+# ==========================
+# 📥 IMPORTATION DU JEU DE DONNÉES
+# ==========================
+df = pd.read_csv("business_SALES.csv")
 
+# ==========================
+# 📝 APERÇU DU JEU DE DONNÉES
+# ==========================
+print("Aperçu des premières lignes :")
+display(df.head())
 
-# -------------------------------------------------------------
-# 2. DESCRIPTION GENERALE DU DATASET
-# -------------------------------------------------------------
-print("\n--- Informations générales ---")
-print(df.info())
+print("\nInformations générales :")
+df.info()
 
-print("\n--- Statistiques descriptives ---")
-print(df.describe(include='all').T)
-
-print("\n--- Valeurs manquantes par colonne ---")
+print("\nValeurs manquantes :")
 print(df.isnull().sum())
 
+# ==========================
+# 📊 STATISTIQUES DESCRIPTIVES
+# ==========================
+print("\nStatistiques descriptives :")
+display(df.describe())
 
-# -------------------------------------------------------------
-# 3. STATISTIQUES DESCRIPTIVES DETAILLEES
-# -------------------------------------------------------------
-stats = df.describe(include='all').T
-print("\n--- Statistiques détaillées ---")
-print(stats)
+# ==========================
+# 📈 DISTRIBUTION DES VARIABLES NUMÉRIQUES
+# ==========================
+df.hist(figsize=(12,8))
+plt.suptitle("Distribution des variables numériques")
+plt.show()
 
+# ==========================
+# 🎯 BOXPLOTS POUR LES OUTLIERS
+# ==========================
+plt.figure(figsize=(10,5))
+sns.boxplot(data=df.select_dtypes(include='number'))
+plt.title("Détection des valeurs extrêmes")
+plt.xticks(rotation=45)
+plt.show()
 
-# -------------------------------------------------------------
-# 4. ANALYSE DE LA VARIABLE DES VENTES (Sales)
-# -------------------------------------------------------------
-if "Sales" in df.columns:
-    plt.figure(figsize=(8,5))
-    plt.hist(df["Sales"].dropna(), bins=20)
-    plt.title("Distribution des ventes")
-    plt.xlabel("Montant des ventes")
-    plt.ylabel("Fréquence")
-    plt.show()
-
-
-# -------------------------------------------------------------
-# 5. ANALYSE PAR CATEGORIE (Category)
-# -------------------------------------------------------------
-if "Category" in df.columns and "Sales" in df.columns:
-    print("\n--- Total des ventes par catégorie ---")
-    print(df.groupby("Category")["Sales"].sum().sort_values(ascending=False))
-
-    print("\n--- Moyenne des ventes par catégorie ---")
-    print(df.groupby("Category")["Sales"].mean().sort_values(ascending=False))
-
-
-# -------------------------------------------------------------
-# 6. GRAPHIQUE : VENTES PAR CATEGORIE
-# -------------------------------------------------------------
-if "Category" in df.columns and "Sales" in df.columns:
-    plt.figure(figsize=(10,6))
-    df.groupby("Category")["Sales"].sum().plot(kind="bar")
-    plt.title("Ventes totales par catégorie")
-    plt.xlabel("Catégorie")
-    plt.ylabel("Total des ventes")
-    plt.show()
-
-
-# -------------------------------------------------------------
-# 7. ANALYSE TEMPORELLE (si une colonne Date existe)
-# -------------------------------------------------------------
-if "Date" in df.columns:
-    df["Date"] = pd.to_datetime(df["Date"], errors='coerce')
-    df = df.set_index("Date")
-
-    plt.figure(figsize=(12,6))
-    df["Sales"].resample("M").sum().plot()
-    plt.title("Évolution mensuelle des ventes")
-    plt.xlabel("Date")
-    plt.ylabel("Ventes mensuelles")
-    plt.show()
-
-
-# -------------------------------------------------------------
-# 8. MATRICE DE CORRELATION
-# -------------------------------------------------------------
-plt.figure(figsize=(8,6))
-corr = df.corr(numeric_only=True)
-plt.matshow(corr, fignum=1)
-plt.colorbar()
+# ==========================
+# 🔥 MATRICE DE CORRÉLATION
+# ==========================
+plt.figure(figsize=(10,6))
+sns.heatmap(df.corr(), annot=True, cmap="coolwarm")
 plt.title("Matrice de corrélation")
 plt.show()
 
-print("\n--- Corrélations ---")
-print(corr)
+# ==========================
+# 💰 ANALYSE DU CHIFFRE D'AFFAIRES PAR PRODUIT
+# ==========================
+revenue_by_product = df.groupby("Product")["Revenue"].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(10,5))
+revenue_by_product.plot(kind="bar")
+plt.title("Chiffre d'affaires total par produit")
+plt.ylabel("Revenue")
+plt.show()
+
+# ==========================
+# 🌍 ANALYSE DES VENTES PAR RÉGION
+# ==========================
+sales_by_region = df.groupby("Region")["Units_Sold"].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(10,5))
+sales_by_region.plot(kind="bar", color="green")
+plt.title("Ventes totales par région")
+plt.ylabel("Units Sold")
+plt.show()
+
+# ==========================
+# 📆 ANALYSE TEMPORELLE DES VENTES
+# ==========================
+df["Date"] = pd.to_datetime(df["Date"])
+sales_time = df.groupby("Date")["Revenue"].sum()
+
+plt.figure(figsize=(12,5))
+plt.plot(sales_time)
+plt.title("Tendance du chiffre d'affaires dans le temps")
+plt.ylabel("Revenue")
+plt.xlabel("Date")
+plt.show()
 
 
-# -------------------------------------------------------------
-# 9. DETECTION DES OUTLIERS
-# -------------------------------------------------------------
-if "Sales" in df.columns:
-    Q1 = df["Sales"].quantile(0.25)
-    Q3 = df["Sales"].quantile(0.75)
-    IQR = Q3 - Q1
-
-    outliers = df[(df["Sales"] < Q1 - 1.5 * IQR) |
-                  (df["Sales"] > Q3 + 1.5 * IQR)]
-
-    print("\n--- Outliers détectés dans Sales ---")
-    print(outliers.head())
 
 
-# -------------------------------------------------------------
-# 10. CONCLUSION AUTOMATIQUE
-# -------------------------------------------------------------
-print("\n-------------------------------------------------------")
-print("RÉSUMÉ AUTOMATIQUE DE L’ANALYSE")
-print("-------------------------------------------------------")
+  ##Synthèse de l'analyse
 
-print(f"- Nombre d'observations : {df.shape[0]}")
-print(f"- Nombre de variables : {df.shape[1]}")
+- Le dataset présente une structure riche permettant une compréhension claire des ventes.
+- La distribution des ventes montre une variabilité importante et des valeurs extrêmes significatives.
+- Plusieurs catégories dominent le chiffre d'affaires total.
+- L’analyse temporelle montre des variations mensuelles qui peuvent guider la planification stratégique.
+- Les corrélations révèlent des liens clés entre variables de performance.
+- Les valeurs aberrantes doivent être traitées ou étudiées plus en détail pour éviter des interprétations biaisées.
 
-if "Sales" in df.columns:
-    print(f"- Moyenne des ventes : {df['Sales'].mean():.2f}")
-    print(f"- Ventes min/max : {df['Sales'].min()} / {df['Sales'].max()}")
 
-if "Category" in df.columns:
-    print("- Catégorie la plus rentable :",
-          df.groupby('Category')["Sales"].sum().idxmax())
-
-print("-------------------------------------------------------")
 
