@@ -7,8 +7,8 @@
 ### Analyse Exploratoire des Facteurs de Performance et de Croissance des Chaînes YouTube Spécialisées en Technologie et Informatique
 
 **Discipline :** Analyse de Données, Médias Numériques
-**Source des Données :** Jeu de données `CC_PROJET_ANALYSE.ipynb` (130 chaînes)
-**Date :** [Date du Jour]
+**Source des Données :** Jeu de données `kaggle youtube tech channels statistics 2025` (130 chaînes)
+**Date :** 03/12/2025
 
 ***
 
