@@ -3,7 +3,7 @@
 
 **Étudiante : HOUMADI NADA**
 
-**Module : Data Science – Cycle de Vie Complet**
+**Module : Data Science **
 
 # 📘 **Compte Rendu du Projet d’Analyse – Dataset DIABETES (Avec Problématique et Analyses Thématiques)**
 
