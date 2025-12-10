@@ -1,12 +1,12 @@
 
 <img src="NADA HOUMADI.jpg" style="height:264px;margin-right:264px"/>      <img src="ENCG SETTAT LOGO.png" style="height:264px;margin-right:264px"/>
 
-
-# 📘 **Compte Rendu du Projet d’Analyse – Dataset DIABETES (Avec Problématique et Analyses Thématiques)**
-
 **Étudiante : HOUMADI NADA**
 
 **Module : Data Science – Cycle de Vie Complet**
+
+# 📘 **Compte Rendu du Projet d’Analyse – Dataset DIABETES (Avec Problématique et Analyses Thématiques)**
+
 
 ---
 
