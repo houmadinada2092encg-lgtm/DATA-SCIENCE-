@@ -1,8 +1,0 @@
-Projet Data Science : Prédiction Progression Diabète
-Nada Houmadi - ENCG Settat - Apogée 24010393
-
-Dataset Diabetes : 442 patients, 10 features physiologiques (BMI, pression sanguine, s1-s6).
-Random Forest : R² ≈ 0.50, BMI = feature #1.
-Pipeline complet : Nettoyage → EDA → Modélisation → Évaluation.
-
-📹 Vidéo explicative  + Notebook + PPT bientôt sur mon Drive : https://drive.google.com/drive/folders/1OhdnkWxtBhad3N6VOXZ15NKIJazZ5Vwl?usp=sharing
